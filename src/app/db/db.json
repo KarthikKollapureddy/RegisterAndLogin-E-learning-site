@@ -1,0 +1,28 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "role": "admin",
+      "fname": "test",
+      "lname": "test",
+      "email": "test@test.com",
+      "password": "Test@123"
+    },
+    {
+      "fname": "abcd",
+      "lname": "efgh",
+      "email": "dummy@dummy",
+      "password": "Test@123",
+      "role": 3,
+      "id": 2
+    },
+    {
+      "fname": "abcd",
+      "lname": "abcd",
+      "email": "dummy@test.com",
+      "password": "Test@123",
+      "role": 2,
+      "id": 3
+    }
+  ]
+}

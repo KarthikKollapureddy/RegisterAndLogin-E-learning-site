@@ -1,3 +1,5 @@
+
+
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
 
@@ -23,7 +25,7 @@
 .imgbgchk:checked + label>.tick_container{
     opacity: 1;
 }
-        /* aNIMATION */
+/*         aNIMATION */
 .imgbgchk:checked + label>img{
     transform: scale(1.25);
     opacity: 0.3;
@@ -58,6 +60,7 @@
 	color: #c4c3ca;
 	background-color: #1f2029;
 	overflow-x: hidden;
+
 }
 button {
 	cursor: pointer;
@@ -175,6 +178,7 @@ h6 span{
   -moz-backface-visibility: hidden;
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
+
 }
 .card-back {
   transform: rotateY(180deg);
@@ -339,12 +343,27 @@ h6 span{
 	display: block;
 }
 
-.err{
+.invalid-feedback {
+  /*display: none;*/
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
   color: #dc3545;
-  align-items: flex-start;
-  display: flex;
-  font-size: small;
-  }
-  input.ng-invalid.ng-touched {
-    border: red 1px solid;
-  }
+  border: red 1px solid;
+}
+input.ng-invalid.ng-touched {
+  border: red 1px solid;
+}
+.err{
+color: #dc3545;
+align-items: flex-start;
+display: flex;
+font-size: small;
+}
+
+
+
+
+
+
+

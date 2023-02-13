@@ -4,9 +4,9 @@
       <div class="row full-height justify-content-center">
         <div class="col-12 text-center align-self-center py-5">
           <div class="section pb-5 pt-2 pt-sm-2 text-center">
-            <h6 class="mb-0 pb-0"><span>Log In </span><span>Sign Up</span></h6>
+            <h6 class="mb-0 pb-0"><span>Log In</span><span>Sign Up</span></h6>
                   <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-                  <label for="reg-log"></label>
+                  <label for="reg-log" ></label>
             <div class="card-3d-wrap mx-auto">
               <div class="card-3d-wrapper">
                 <div class="card-front">
@@ -39,9 +39,9 @@
                             </div>
                           </div>
                       </div> -->
-                      <form [formGroup]="form" #formDir = ngForm>
+                      <form action="login" [formGroup]="form" #formDir = ngForm (ngSubmit)=" submitLogin()">
                       <div class="form-group">
-                        <input type="email" name="logemail" class="form-style" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
+                        <input type="email" name="logemail" class="form-style" [(ngModel)]="userLogin.email" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
                         <i class="input-icon uil uil-at"></i>
                         <div *ngIf="email.invalid && (email.touched || email.dirty)" >
                           <div  *ngIf="email.errors?.['required']" class="err">
@@ -53,7 +53,7 @@
                         </div>
                       </div>
                       <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" formControlName="password" placeholder="Your Password" id="logpass" autocomplete="off" minlength="8" maxlength="16">
+                        <input type="password" name="logpass" class="form-style" [(ngModel)]="userLogin.password" formControlName="password" placeholder="Your Password" id="logpass" autocomplete="off" minlength="8" maxlength="16">
                         <i class="input-icon uil uil-lock-alt"></i>
                         <div *ngIf="password.invalid && (password.touched || password.dirty)">
                           <div style="font-size: small;" *ngIf="password.errors?.['required']" class="err">
@@ -65,40 +65,118 @@
                           </div>
                         </div>
                       </div>
-                      <button [disabled]="form.invalid" type="submit" class="btn mt-4">submit</button>&nbsp;&nbsp;
+                      <button [disabled]="form.invalid" (click)="snackBarLogin()" type="submit" class="btn mt-4">submit</button>&nbsp;&nbsp;
                       <button href="#" (click)="formDir.resetForm({})" class="btn mt-4">resest</button>
 
-                                    <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
+                                    <!-- <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p> -->
                        </form>
                         </div>
                       </div>
                     </div>
-                    <!-- <app-register></app-register> -->
-
-
-                    <div class="card-back">
-                      <app-signup></app-signup>
-                    </div>
-                <!-- <div class="card-back">
+                <div class="card-back">
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">Sign Up</h4>
                       <div class="form-group">
-                        <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="off">
-                        <i class="input-icon uil uil-user"></i>
-                      </div>
-                      <div class="form-group mt-2">
-                        <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
-                        <i class="input-icon uil uil-at"></i>
-                      </div>
-                      <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
-                        <i class="input-icon uil uil-lock-alt"></i>
-                      </div>
-                      <a href="#" class="btn mt-4">submit</a>
+                        <div class="container parent" id="check">
+                          <div class="row">
+                              <div class='col text-center'>
+                              <input type="radio" name="imgbackground" id="img1" class="d-none imgbgchk" value="student">
+                                <label for="img1">
+                                  <h6>Student</h6>
+                                  <img src="https://drive.google.com/uc?export=view&id=1_4644SwjtxBM0H86jm7faVqCzvDtJ7us" alt="Image student" >
+                                  <div class="tick_container">
+                                    <div class="tick"><i (click)="roleStudent()" class="fa fa-check"></i></div>
+                                  </div>
+                                  </label>
+                              </div>
+                              <div class='col text-center'>
+                              <input type="radio" name="imgbackground" id="img2" class="d-none imgbgchk" value="trainer">
+                                <label for="img2">
+                                  <h6>Trainer</h6>
+                                  <img src="https://drive.google.com/uc?export=view&id=1dW5XhsdrVdG9A1gAaYdVZ11JBQ1NMVxF" alt="Image Trainer" >
+                                  <div class="tick_container">
+                                    <div class="tick"><i (click)="roleTrainer()" class="fa fa-check"></i></div>
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <form action="signup" [formGroup]="form1" #formDir = ngForm>
+                            <div class=" form- group row">
+                            <div class="col-6">
+                              
+                              <input type="text" name="logfname" class="form-style" [(ngModel)]="userSignup.fname" formControlName="fname" placeholder="First Name" id="name" autocomplete="off">
+                              <i class="input-icon uil uil-user"></i>
+                              <div *ngIf="fname.invalid && (fname.touched||fname.dirty)">
+                                <div *ngIf="fname.errors?.['minlength']" class="err">
+                                     first name must be at least 4 characters long.
+                                </div>
+                                <div *ngIf="fname.errors?.['required']" class="err">
+                                     first name is required
+                                </div>
+                                <div *ngIf="fname.errors?.['maxlength']" class="err">
+                                  last name can't be more than 18 characters long.
+                                </div>
+                              </div>
+
+                              
+                            </div>
+                           <div class=" col-6">
+                              <div>
+                                <input type="text" name="loglname" class="form-style" [(ngModel)]="userSignup.lname" formControlName="lname" placeholder="Last Name" id="lname" autocomplete="off">
+                                <i class="input-icon uil uil-user"></i>
+                                <div *ngIf="lname.invalid && (lname.touched||lname.dirty)">
+                                  <div *ngIf="lname.errors?.['minlength']" class="err">
+                                       last name must be at least 4 characters long.
+                                  </div>
+                                  <div *ngIf="lname.errors?.['required']" class="err">
+                                       last ame is required
+                                  </div>
+                                  <div *ngIf="lname.errors?.['maxlength']" class="err">
+                                    last name can't be more than 18 characters long.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                            
+                        
+                            <div class="form-group mt-2">
+                              <input type="email" name="logemail" class="form-style" [(ngModel)]="userSignup.email" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
+                              <i class="input-icon uil uil-at"></i>
+                              <div *ngIf="regEmail.invalid && (regEmail.touched || regEmail.dirty)" >
+                                <div  *ngIf="email.errors?.['required']" class="err">
+                                  Email is required
+                                </div>
+                                <div *ngIf="regEmail.errors?.['email']" class="err">
+                                  Email is invalid
+                                </div>
+                              </div>
+                        
+                            </div>
+                            <div class="form-group mt-2">
+                              <input type="password" name="logpass" class="form-style" [(ngModel)]="userSignup.password" formControlName="password" placeholder="Your Password" id="logpass" autocomplete="off">
+                              <i class="input-icon uil uil-lock-alt"></i>
+                              <div *ngIf="regPassword.invalid && (regPassword.touched || regPassword.dirty)">
+                                <div style="font-size: small;" *ngIf="regPassword.errors?.['required']" class="err">
+                                  password is required
+                                </div>
+                        
+                                <div style="font-size: small;float: left;" *ngIf="regPassword.errors?.['pattern']" class="err">
+                                  password must contain one letter from A-Z ,a-z,numericals and special characters of length 8 to 16
+                                </div>
+                              </div>
+                            </div>
+                            <!-- <a href="#" class="btn mt-4">submit</a> -->
+                            <button [disabled]="form1.invalid" (click)="submitReg()" type="submit" class="btn mt-4">submit</button>&nbsp;&nbsp;
+                                              <button href="#"  (click)="formDir.resetForm({})" class="btn mt-4">resest</button>
+                          </form>
+                      
                         </div>
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               </div>

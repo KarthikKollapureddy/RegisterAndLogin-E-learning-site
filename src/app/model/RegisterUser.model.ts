@@ -1,7 +1,9 @@
 export class
 RegisterUser
 {
-  name="";
+  fname="";
+  lname="";
   email="";
   password="";
+  role=0
 }
