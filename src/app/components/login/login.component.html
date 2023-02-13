@@ -65,7 +65,7 @@
                           </div>
                         </div>
                       </div>
-                      <button [disabled]="form.invalid" (click)="snackBarLogin()" type="submit" class="btn mt-4">submit</button>&nbsp;&nbsp;
+                      <button [disabled]="form.invalid" (click)="submitLogin()" type="submit" class="btn mt-4">submit</button>&nbsp;&nbsp;
                       <button href="#" (click)="formDir.resetForm({})" class="btn mt-4">resest</button>
 
                                     <!-- <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p> -->
@@ -84,6 +84,7 @@
                               <input type="radio" name="imgbackground" id="img1" class="d-none imgbgchk" value="student">
                                 <label for="img1">
                                   <h6>Student</h6>
+                                  <!-- <img src="../assets/student.png" alt="Image student" > -->
                                   <img src="https://drive.google.com/uc?export=view&id=1_4644SwjtxBM0H86jm7faVqCzvDtJ7us" alt="Image student" >
                                   <div class="tick_container">
                                     <div class="tick"><i (click)="roleStudent()" class="fa fa-check"></i></div>

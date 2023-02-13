@@ -14,7 +14,9 @@ import {MatSnackBar, MatSnackBarRef,MatSnackBarHorizontalPosition,
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private service:LoginAndRegisterService,private router:Router,private snackBar: MatSnackBar) { }
+  constructor(private service:LoginAndRegisterService,private router:Router,private snackBar: MatSnackBar) { 
+    
+  }
 
 
   userLogin = new LoginUser;
@@ -26,7 +28,7 @@ export class LoginComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
 verticalPosition: MatSnackBarVerticalPosition = 'top';
   ngOnInit(): void {
-
+    
 
     this.form = new FormGroup(
       {
@@ -70,25 +72,30 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   roleStudent(){
     this.userSignup.role=3;
+    
+    
   }
   roleTrainer(){
     this.userSignup.role=2;
+
   }
 
-  snackBarLogin(){
-    if(this.form.valid){
-      
-      this.snackBar.open("user registerted you can now Log In","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+  submitReg(){
+    if(this.userSignup.role==0){
+      console.log(this.userSignup.role);
+      this.form1.reset();
+      this.snackBar.open("Signup failed, choose a role and sign up again.","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition})
     }
     else{
-      this.snackBar.open("err","X",{duration:this.durationInSeconds*1000})
-    }
-  }
-  submitReg(){
+
     this.service.registerUser(this.userSignup).subscribe(
       data=>{
+        
+        
         console.table(data);
+        this.snackBar.open("User registered sucesfully, You can now login.","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition})
         
         
       },
@@ -101,20 +108,27 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
       }
     )
   }
+}
 
   submitLogin(){
     this.service.loginUser().subscribe(
       data=>{
+        let notFound = true
         this.regUsers=data;
         for(let i = 0;i<this.regUsers.length;i++){
 
           if(this.userLogin.email==this.regUsers[i].email && this.userLogin.password==this.regUsers[i].password){
+            console.log("user logged in:" + this.regUsers[i]);
+            notFound = false
+            this.snackBar.open("login succesfull","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,})
               // this.router.navigate(["path"])
-              console.log(this.regUsers[i]);
-              
-              this.snackBar.open("login succesfull","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
-                verticalPosition: this.verticalPosition,})
           }
+          if(notFound){
+            this.snackBar.open("login error","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,})
+          }
+          
         }
       },
       error=>{

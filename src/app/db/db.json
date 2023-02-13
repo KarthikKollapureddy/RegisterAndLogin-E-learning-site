@@ -10,19 +10,11 @@
     },
     {
       "fname": "abcd",
-      "lname": "efgh",
-      "email": "dummy@dummy",
-      "password": "Test@123",
-      "role": 3,
-      "id": 2
-    },
-    {
-      "fname": "abcd",
-      "lname": "abcd",
-      "email": "dummy@test.com",
-      "password": "Test@123",
+      "lname": "acbd",
+      "email": "po@12",
+      "password": "Post@123",
       "role": 2,
-      "id": 3
+      "id": 2
     }
   ]
 }
