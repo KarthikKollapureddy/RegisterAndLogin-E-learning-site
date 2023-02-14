@@ -65,7 +65,7 @@
                           </div>
                         </div>
                       </div>
-                      <button [disabled]="form.invalid" (click)="submitLogin()" type="submit" class="btn mt-4">submit</button>&nbsp;&nbsp;
+                      <button [disabled]="form.invalid"  type="submit" class="btn mt-4">submit</button>&nbsp;&nbsp;
                       <button href="#" (click)="formDir.resetForm({})" class="btn mt-4">resest</button>
 
                                     <!-- <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p> -->
@@ -107,7 +107,7 @@
                             <div class=" form- group row">
                             <div class="col-6">
                               
-                              <input type="text" name="logfname" class="form-style" [(ngModel)]="userSignup.firstName" formControlName="fname" placeholder="First Name" id="name" minlength="4" autocomplete="off">
+                              <input type="text" name="logfname" class="form-style" [(ngModel)]="userSignup.email" formControlName="fname" placeholder="First Name" id="name" minlength="4" autocomplete="off">
                               <i class="input-icon uil uil-user"></i>
                               <div *ngIf="fname.invalid && (fname.touched||fname.dirty)">
                                 <div *ngIf="fname.errors?.['minlength']" class="err">
@@ -126,7 +126,7 @@
                             </div>
                            <div class=" col-6">
                               <div>
-                                <input type="text" name="loglname" class="form-style" [(ngModel)]="userSignup.lastName" formControlName="lname" placeholder="Last Name" id="lname" autocomplete="off">
+                                <input type="text" name="loglname" class="form-style" [(ngModel)]="userSignup.lName" formControlName="lname" placeholder="Last Name" id="lname" autocomplete="off">
                                 <i class="input-icon uil uil-user"></i>
                                 <div *ngIf="lname.invalid && (lname.touched||lname.dirty)">
                                   <div *ngIf="lname.errors?.['minlength']" class="err">
@@ -146,7 +146,7 @@
                             
                         
                             <div class="form-group mt-2">
-                              <input type="email" name="logemail" class="form-style" [(ngModel)]="userSignup.userName" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
+                              <input type="email" name="logemail" class="form-style" [(ngModel)]="userSignup.email" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
                               <i class="input-icon uil uil-at"></i>
                               <div *ngIf="regEmail.invalid && (regEmail.touched || regEmail.dirty)" >
                                 <div  *ngIf="email.errors?.['required']" class="err">

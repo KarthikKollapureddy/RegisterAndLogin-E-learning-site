@@ -1,9 +1,9 @@
 export class
 RegisterUser
 {
-  firstName:string='';
-  lastName:string="";
-  userName:string="";
+  fName:string='';
+  lName:string="";
+  email:string="";
   pass:string="";
   role=-1
   

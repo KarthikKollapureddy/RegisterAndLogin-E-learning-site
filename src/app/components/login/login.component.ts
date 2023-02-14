@@ -45,18 +45,18 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
     )
     
     this.form1 = new FormGroup({
-      fname : new FormControl(this.userSignup.firstName,[
+      fname : new FormControl(this.userSignup.fName,[
         Validators.minLength(4),
         Validators.maxLength(18),
         Validators.required
       ]),
-      lname : new FormControl(this.userSignup.lastName,[
+      lname : new FormControl(this.userSignup.lName,[
         Validators.minLength(4),
         Validators.maxLength(18),
         Validators.required
       ]),
 
-      email : new FormControl(this.userSignup.userName,[
+      email : new FormControl(this.userSignup.email,[
         Validators.email,
         Validators.required,
       ]),
@@ -133,7 +133,10 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
         //   }
           
         // }
-        console.log(data)
+        // console.log(data)
+        let myJson = JSON.parse(JSON.stringify(data))
+        console.log(myJson["token"]);
+        
         this.snackBar.open("login succesfull","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,})
 
