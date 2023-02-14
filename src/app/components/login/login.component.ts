@@ -32,11 +32,11 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
 
     this.form = new FormGroup(
       {
-        email:new FormControl(this.userLogin.email,[
+        email:new FormControl(this.userLogin.userName,[
           Validators.email,
           Validators.required
         ]),
-        password:new FormControl(this.userLogin.password,[
+        password:new FormControl(this.userLogin.pass,[
           Validators.required,
           Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@$%^&)(}{][:;<>,.?/~_+-=|]).{8,15}$')
 
@@ -45,22 +45,22 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
     )
     
     this.form1 = new FormGroup({
-      fname : new FormControl(this.userSignup.fname,[
+      fname : new FormControl(this.userSignup.firstName,[
         Validators.minLength(4),
         Validators.maxLength(18),
         Validators.required
       ]),
-      lname : new FormControl(this.userSignup.lname,[
+      lname : new FormControl(this.userSignup.lastName,[
         Validators.minLength(4),
         Validators.maxLength(18),
         Validators.required
       ]),
 
-      email : new FormControl(this.userSignup.email,[
+      email : new FormControl(this.userSignup.userName,[
         Validators.email,
         Validators.required,
       ]),
-      password : new FormControl(this.userSignup.password,[
+      password : new FormControl(this.userSignup.pass,[
         Validators.required,
         Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@$%^&)(}{][:;<>,.?/~_+-=|]).{8,32}$')
       ]),
@@ -72,17 +72,20 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   roleStudent(){
     this.userSignup.role=3;
+    console.log("role:"+3);
+    
     
     
   }
   roleTrainer(){
     this.userSignup.role=2;
+    console.log("role:"+2);
+    
 
   }
 
   submitReg(){
-    if(this.userSignup.role==0){
-      console.log(this.userSignup.role);
+    if(this.userSignup.role==-1){
       this.form1.reset();
       this.snackBar.open("Signup failed, choose a role and sign up again.","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition})
@@ -111,25 +114,29 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
 }
 
   submitLogin(){
-    this.service.loginUser().subscribe(
+    this.service.loginUser(this.userLogin).subscribe(
       data=>{
-        let notFound = true
-        this.regUsers=data;
-        for(let i = 0;i<this.regUsers.length;i++){
+        // let notFound = true
+        // this.regUsers=data;
+        // for(let i = 0;i<this.regUsers.length;i++){
 
-          if(this.userLogin.email==this.regUsers[i].email && this.userLogin.password==this.regUsers[i].password){
-            console.log("user logged in:" + this.regUsers[i]);
-            notFound = false
-            this.snackBar.open("login succesfull","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
-              verticalPosition: this.verticalPosition,})
-              // this.router.navigate(["path"])
-          }
-          if(notFound){
-            this.snackBar.open("login error","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
-              verticalPosition: this.verticalPosition,})
-          }
+        //   if(this.userLogin.userName==this.regUsers[i].userName && this.userLogin.pass==this.regUsers[i].pass){
+        //     console.log("user logged in:" + this.regUsers[i]);
+        //     notFound = false
+        //     this.snackBar.open("login succesfull","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+        //       verticalPosition: this.verticalPosition,})
+        //       // this.router.navigate(["path"])
+        //   }
+        //   if(notFound){
+        //     this.snackBar.open("login error","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+        //       verticalPosition: this.verticalPosition,})
+        //   }
           
-        }
+        // }
+        console.log(data)
+        this.snackBar.open("login succesfull","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,})
+
       },
       error=>{
         console.log(error);

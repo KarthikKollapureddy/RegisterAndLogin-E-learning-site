@@ -41,7 +41,7 @@
                       </div> -->
                       <form action="login" [formGroup]="form" #formDir = ngForm (ngSubmit)=" submitLogin()">
                       <div class="form-group">
-                        <input type="email" name="logemail" class="form-style" [(ngModel)]="userLogin.email" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
+                        <input type="email" name="logemail" class="form-style" [(ngModel)]="userLogin.userName" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
                         <i class="input-icon uil uil-at"></i>
                         <div *ngIf="email.invalid && (email.touched || email.dirty)" >
                           <div  *ngIf="email.errors?.['required']" class="err">
@@ -53,7 +53,7 @@
                         </div>
                       </div>
                       <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" [(ngModel)]="userLogin.password" formControlName="password" placeholder="Your Password" id="logpass" autocomplete="off" minlength="8" maxlength="16">
+                        <input type="password" name="logpass" class="form-style" [(ngModel)]="userLogin.pass" formControlName="password" placeholder="Your Password" id="logpass" autocomplete="off" minlength="8" maxlength="16">
                         <i class="input-icon uil uil-lock-alt"></i>
                         <div *ngIf="password.invalid && (password.touched || password.dirty)">
                           <div style="font-size: small;" *ngIf="password.errors?.['required']" class="err">
@@ -82,22 +82,22 @@
                           <div class="row">
                               <div class='col text-center'>
                               <input type="radio" name="imgbackground" id="img1" class="d-none imgbgchk" value="student">
-                                <label for="img1">
+                                <label for="img1" (click)="roleStudent()">
                                   <h6>Student</h6>
                                   <!-- <img src="../assets/student.png" alt="Image student" > -->
-                                  <img src="https://drive.google.com/uc?export=view&id=1_4644SwjtxBM0H86jm7faVqCzvDtJ7us" alt="Image student" >
+                                  <img  src="https://drive.google.com/uc?export=v˘iew&id=1_4644SwjtxBM0H86jm7faVqCzvDtJ7us" alt="Image student" >
                                   <div class="tick_container">
-                                    <div class="tick"><i (click)="roleStudent()" class="fa fa-check"></i></div>
+                                    <div class="tick"  ><i class="fa fa-check"></i></div>
                                   </div>
                                   </label>
                               </div>
                               <div class='col text-center'>
                               <input type="radio" name="imgbackground" id="img2" class="d-none imgbgchk" value="trainer">
-                                <label for="img2">
+                                <label for="img2" (click)="roleTrainer()">
                                   <h6>Trainer</h6>
-                                  <img src="https://drive.google.com/uc?export=view&id=1dW5XhsdrVdG9A1gAaYdVZ11JBQ1NMVxF" alt="Image Trainer" >
+                                  <img  src="https://drive.google.com/uc?export=view&id=1dW5XhsdrVdG9A1gAaYdVZ11JBQ1NMVxF" alt="Image Trainer" >
                                   <div class="tick_container">
-                                    <div class="tick"><i (click)="roleTrainer()" class="fa fa-check"></i></div>
+                                    <div class="tick"  ><i class="fa fa-check"></i></div>
                                   </div>
                                 </label>
                               </div>
@@ -107,10 +107,11 @@
                             <div class=" form- group row">
                             <div class="col-6">
                               
-                              <input type="text" name="logfname" class="form-style" [(ngModel)]="userSignup.fname" formControlName="fname" placeholder="First Name" id="name" autocomplete="off">
+                              <input type="text" name="logfname" class="form-style" [(ngModel)]="userSignup.firstName" formControlName="fname" placeholder="First Name" id="name" minlength="4" autocomplete="off">
                               <i class="input-icon uil uil-user"></i>
                               <div *ngIf="fname.invalid && (fname.touched||fname.dirty)">
                                 <div *ngIf="fname.errors?.['minlength']" class="err">
+                                  <!-- <div *ngIf="form1.hasError('minlength','fname')"> -->
                                      first name must be at least 4 characters long.
                                 </div>
                                 <div *ngIf="fname.errors?.['required']" class="err">
@@ -125,14 +126,14 @@
                             </div>
                            <div class=" col-6">
                               <div>
-                                <input type="text" name="loglname" class="form-style" [(ngModel)]="userSignup.lname" formControlName="lname" placeholder="Last Name" id="lname" autocomplete="off">
+                                <input type="text" name="loglname" class="form-style" [(ngModel)]="userSignup.lastName" formControlName="lname" placeholder="Last Name" id="lname" autocomplete="off">
                                 <i class="input-icon uil uil-user"></i>
                                 <div *ngIf="lname.invalid && (lname.touched||lname.dirty)">
                                   <div *ngIf="lname.errors?.['minlength']" class="err">
                                        last name must be at least 4 characters long.
                                   </div>
                                   <div *ngIf="lname.errors?.['required']" class="err">
-                                       last ame is required
+                                       last name is required
                                   </div>
                                   <div *ngIf="lname.errors?.['maxlength']" class="err">
                                     last name can't be more than 18 characters long.
@@ -145,7 +146,7 @@
                             
                         
                             <div class="form-group mt-2">
-                              <input type="email" name="logemail" class="form-style" [(ngModel)]="userSignup.email" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
+                              <input type="email" name="logemail" class="form-style" [(ngModel)]="userSignup.userName" formControlName="email" placeholder="Your Email" id="logemail" autocomplete="off">
                               <i class="input-icon uil uil-at"></i>
                               <div *ngIf="regEmail.invalid && (regEmail.touched || regEmail.dirty)" >
                                 <div  *ngIf="email.errors?.['required']" class="err">
@@ -158,7 +159,7 @@
                         
                             </div>
                             <div class="form-group mt-2">
-                              <input type="password" name="logpass" class="form-style" [(ngModel)]="userSignup.password" formControlName="password" placeholder="Your Password" id="logpass" autocomplete="off">
+                              <input type="password" name="logpass" class="form-style" [(ngModel)]="userSignup.pass" formControlName="password" placeholder="Your Password" id="logpass" autocomplete="off">
                               <i class="input-icon uil uil-lock-alt"></i>
                               <div *ngIf="regPassword.invalid && (regPassword.touched || regPassword.dirty)">
                                 <div style="font-size: small;" *ngIf="regPassword.errors?.['required']" class="err">

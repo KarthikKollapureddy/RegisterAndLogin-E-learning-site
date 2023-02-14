@@ -1,5 +1,7 @@
 export class LoginUser
 {
-  email:String="";
-  password:String=""
+  userName:string='';
+  pass:string='';
+
+  
 }

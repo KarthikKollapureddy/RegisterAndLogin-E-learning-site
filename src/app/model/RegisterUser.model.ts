@@ -1,9 +1,10 @@
 export class
 RegisterUser
 {
-  fname="";
-  lname="";
-  email="";
-  password="";
-  role=0
+  firstName:string='';
+  lastName:string="";
+  userName:string="";
+  pass:string="";
+  role=-1
+  
 }
