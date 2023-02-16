@@ -45,18 +45,18 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
     )
     
     this.form1 = new FormGroup({
-      fname : new FormControl(this.userSignup.fName,[
+      fname : new FormControl(this.userSignup.firstName,[
         Validators.minLength(4),
         Validators.maxLength(18),
         Validators.required
       ]),
-      lname : new FormControl(this.userSignup.lName,[
+      lname : new FormControl(this.userSignup.lastName,[
         Validators.minLength(4),
         Validators.maxLength(18),
         Validators.required
       ]),
 
-      email : new FormControl(this.userSignup.email,[
+      email : new FormControl(this.userSignup.userName,[
         Validators.email,
         Validators.required,
       ]),
@@ -103,8 +103,10 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
         
       },
       error=>{
+
+        let myJsonErr = JSON.parse(JSON.stringify(error))
         console.log(error);
-        this.snackBar.open("error registering the user ","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+        this.snackBar.open(error["error"],"X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition})
 
         
@@ -135,7 +137,8 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
         // }
         // console.log(data)
         let myJson = JSON.parse(JSON.stringify(data))
-        console.log(myJson["token"]);
+        console.log(data)
+        console.log(myJson[0]["token"]);
         
         this.snackBar.open("login succesfull","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,})
@@ -143,7 +146,7 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
       },
       error=>{
         console.log(error);
-        this.snackBar.open("login failed.","X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
+        this.snackBar.open(error["error"],"X",{duration:this.durationInSeconds*1000,horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,})
         
       }

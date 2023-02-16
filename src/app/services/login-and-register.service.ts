@@ -14,6 +14,6 @@ export class LoginAndRegisterService {
     return this.http.post<RegisterUser>("http://localhost:8098/elearning/api/register",user);
   }
   loginUser(user: LoginUser){
-    return this.http.post("http://localhost:8098/elearning/api/signup",user);
+    return this.http.post("http://localhost:8098/elearning/api/signin",user);
   }
 }
